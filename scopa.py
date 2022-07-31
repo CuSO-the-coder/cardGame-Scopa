@@ -45,6 +45,7 @@ def start():
         del mazzo[0]
 
 
+
 def distro():
     for i in range (3):
         manoPlayerOne[i]=mazzo[0]
@@ -57,7 +58,7 @@ def checkPickUp(player,carta):
     for i in range (len(tavolo)):
         for j in range(len(tavolo)):
             cont2=tavolo[j]
-            if carta[0]==cont2[0]:
+            if carta[0]==cont2[0 or ord(carta[0])==ord(cont2[0])]:
                 if player==1:
                     print(f"il giocatore {player} ha preso {cont2} con {carta}")
                     mazzettoPlayerOne.append(carta)
@@ -72,8 +73,32 @@ def checkPickUp(player,carta):
                     tavolo.remove(carta)
                     tavolo.remove(cont2)
                     break
-    '''Aggiungi il sistema delle somme: salva in una variabile il valore dell aprima carta, poi cerca se ci son oatre carte che danno lo stesso valore sommate. Per ovviare a regina jack e re, metti un if che da al valore della carta 8,9,10'''
+'''          for t in range(len(tavolo)):
+                cont3=tavolo[t]
+                if int(carta[0]) == int(cont2[0])+ int(cont3[0]):
+                    if player==1:
+                        print(f"il giocatore {player} ha preso {cont2} e {cont3} con {carta}")
+                        mazzettoPlayerOne.append(carta)
+                        mazzettoPlayerOne.append(cont2)
+                        mazzettoPlayerOne.append(cont3)                           
+                        tavolo.remove(carta)
+                        tavolo.remove(cont2)
+                        tavolo.remove(cont2)
+                        break
+                    else:
+                        print(f"il giocatore {player} ha preso {cont2} e {cont3} con {carta}")
+                        mazzettoPlayerTwo.append(carta)
+                        mazzettoPlayerTwo.append(cont2)
+                        mazzettoPlayerTwo.append(cont3)                           
+                        tavolo.remove(carta)
+                        tavolo.remove(cont2)
+                        tavolo.remove(cont3)
+                        break
 
+            '''
+
+    #done'''Aggiungi il sistema delle somme: salva in una variabile il valore dell aprima carta, poi cerca se ci son oatre carte che danno lo stesso valore sommate. Per ovviare a regina jack e re, metti un if che da al valore della carta 8,9,10'''
+''''aggiungi un check per evitare l'errore quando si butta una figura'''
 
 '''' aggiungi la "cattura finale" delle catte per l'ultima mano'''
 
@@ -85,6 +110,7 @@ def checkPickUp(player,carta):
 
 
 def drop(player):
+    print(manoPlayerOne)
     inp=0
     while not 1<=inp<=len(manoPlayerTwo):
         inp=int(input(f"Giocatore{player} che carta vuoi giocare?"))
