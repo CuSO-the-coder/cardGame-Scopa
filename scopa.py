@@ -138,14 +138,14 @@ def drop(player):
         print(manoPlayerTwo)
     while not 1<=inp<=len(manoPlayerTwo):
         inp=int(input(f"Giocatore {player} che carta vuoi giocare?"))
-        if player==1:
-            carta=manoPlayerOne[inp-1]
-            del manoPlayerOne[inp-1]
-            checkPickUp(player,carta)
-        else:
-            carta=manoPlayerTwo[inp-1]
-            del manoPlayerTwo[inp-1]
-            checkPickUp(player,carta)
+    if player==1:
+        carta=manoPlayerOne[inp-1]
+        del manoPlayerOne[inp-1]
+        checkPickUp(player,carta)
+    else:
+        carta=manoPlayerTwo[inp-1]
+        del manoPlayerTwo[inp-1]
+        checkPickUp(player,carta)
 
 
 shuffle()
