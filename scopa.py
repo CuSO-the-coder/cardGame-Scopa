@@ -26,13 +26,26 @@ mazzo_reset=[
                 "Kc", "Kq", "Kf", "Kp"
             ]
 
+carte_valori={
+                "1"     :   1,
+                "2"     :   2,
+                "3"     :   3,
+                "4"     :   4,
+                "5"     :   5,
+                "6"     :   6,
+                "7"     :   7,
+                "J"      :   8,
+                "Q"    :    9,
+                "K"     :    10
+}
+
 manoPlayerOne,  manoPlayerTwo   =   ["","",""]  ,  ["","",""]
 
 tavolo=[]
 
 mazzettoPlayerOne, mazzettoPlayerTwo=[],[]
 
-
+player=1
 
 
 def shuffle():
@@ -57,74 +70,95 @@ def distro():
 def checkPickUp(player,carta):
     for i in range (len(tavolo)):
         for j in range(len(tavolo)):
-            cont2=tavolo[j]
-            if carta[0]==cont2[0 or ord(carta[0])==ord(cont2[0])]:
+            cartaDaControllare=tavolo[j]
+            val_cartaDaControllare=carte_valori[cartaDaControllare[0]]
+            val_cartaGiocatore=carte_valori[carta[0]]
+            if val_cartaGiocatore==val_cartaDaControllare:
                 if player==1:
-                    print(f"il giocatore {player} ha preso {cont2} con {carta}")
+                    print(f"il giocatore {player} ha preso {cartaDaControllare} con {carta}")
                     mazzettoPlayerOne.append(carta)
-                    mazzettoPlayerOne.append(cont2)
-                    tavolo.remove(carta)
-                    tavolo.remove(cont2)
-                    break
+                    mazzettoPlayerOne.append(cartaDaControllare)
+                    tavolo.remove(cartaDaControllare)
+                    turnSwap(player,carta)
                 else:
-                    print(f"il giocatore {player} ha preso {cont2} con {carta}")
+                    print(f"il giocatore {player} ha preso {cartaDaControllare} con {carta}")
                     mazzettoPlayerTwo.append(carta)
-                    mazzettoPlayerTwo.append(cont2)
-                    tavolo.remove(carta)
-                    tavolo.remove(cont2)
-                    break
-'''          for t in range(len(tavolo)):
-                cont3=tavolo[t]
-                if int(carta[0]) == int(cont2[0])+ int(cont3[0]):
+                    mazzettoPlayerTwo.append(cartaDaControllare)
+                    tavolo.remove(cartaDaControllare)
+                    turnSwap(player,carta)
+#------------------------
+    for i in range (len(tavolo)):
+        for j in range(len(tavolo)):
+            cartaDaControllare=tavolo[j]
+            val_cartaDaControllare=carte_valori[cartaDaControllare[0]]
+            val_cartaGiocatore=carte_valori[carta[0]]
+            for t in range(len(tavolo)):
+                cartaDaControllare2=tavolo[t]
+                val_cartaDaControllare2=carte_valori[cartaDaControllare2[0]]
+            if val_cartaGiocatore==val_cartaDaControllare+val_cartaDaControllare2:
                     if player==1:
-                        print(f"il giocatore {player} ha preso {cont2} e {cont3} con {carta}")
+                        print(f"il giocatore {player} ha preso {cartaDaControllare} e {cartaDaControllare2} con {carta}")
                         mazzettoPlayerOne.append(carta)
-                        mazzettoPlayerOne.append(cont2)
-                        mazzettoPlayerOne.append(cont3)                           
-                        tavolo.remove(carta)
-                        tavolo.remove(cont2)
-                        tavolo.remove(cont2)
-                        break
+                        mazzettoPlayerOne.append(cartaDaControllare)
+                        mazzettoPlayerOne.append(cartaDaControllare2)                           
+                        tavolo.remove(cartaDaControllare)
+                        tavolo.remove(cartaDaControllare2)
+                        turnSwap(player,carta)
                     else:
-                        print(f"il giocatore {player} ha preso {cont2} e {cont3} con {carta}")
+                        print(f"il giocatore {player} ha preso {cartaDaControllare} e {cartaDaControllare2} con {carta}")
                         mazzettoPlayerTwo.append(carta)
-                        mazzettoPlayerTwo.append(cont2)
-                        mazzettoPlayerTwo.append(cont3)                           
-                        tavolo.remove(carta)
-                        tavolo.remove(cont2)
-                        tavolo.remove(cont3)
-                        break
+                        mazzettoPlayerTwo.append(cartaDaControllare)
+                        mazzettoPlayerTwo.append(cartaDaControllare2)                           
+                        tavolo.remove(cartaDaControllare)
+                        tavolo.remove(cartaDaControllare2)
+                        turnSwap(player,carta)
+    turnSwap(player,carta)
 
-            '''
 
-    #done'''Aggiungi il sistema delle somme: salva in una variabile il valore dell aprima carta, poi cerca se ci son oatre carte che danno lo stesso valore sommate. Per ovviare a regina jack e re, metti un if che da al valore della carta 8,9,10'''
-''''aggiungi un check per evitare l'errore quando si butta una figura'''
+def turnSwap(player, carta):
+    if len(tavolo)==0:
+        print(f"il giocatore {player} ha fatto scopa con {carta}")
+    #aggiungi un sistema di conteggio delle scope
+    if player==1:
+        player=2
+    else:
+        player=1
+    drop(player)
+    
+    
+
+
+    
+def drop(player):
+   # tableView()
+    inp=0
+    if player==1:
+        print(manoPlayerOne)
+    else:
+        print(manoPlayerTwo)
+    while not 1<=inp<=len(manoPlayerTwo):
+        inp=int(input(f"Giocatore {player} che carta vuoi giocare?"))
+        if player==1:
+            carta=manoPlayerOne[inp-1]
+            del manoPlayerOne[inp-1]
+            checkPickUp(player,carta)
+        else:
+            carta=manoPlayerTwo[inp-1]
+            del manoPlayerTwo[inp-1]
+            checkPickUp(player,carta)
+
+
+shuffle()
+start()
+drop(player)
+
 
 '''' aggiungi la "cattura finale" delle catte per l'ultima mano'''
 
 '''aggiungi il sistema di conteggi punti ed il salvataggio degli stessi in un file '''
 
 '''aggiungi l'interfaccia da terminale con i vari clear e l'indentazione da partita'''
-    
 
+''''aggiungi il rimescolamento delle carte '''
 
-
-def drop(player):
-    print(manoPlayerOne)
-    inp=0
-    while not 1<=inp<=len(manoPlayerTwo):
-        inp=int(input(f"Giocatore{player} che carta vuoi giocare?"))
-        if player==1:
-            carta=manoPlayerOne[inp]
-            del manoPlayerOne[inp-1]
-            tavolo.append(carta)
-            checkPickUp(player,carta)
-        else:
-            carta=manoPlayerTwo[inp]
-            del manoPlayerTwo[inp-1]
-            tavolo.append(carta)
-            checkPickUp(player,carta)
-
-
-shuffle()
-start()
+''''aggiungi la visualizzazione del tavolo'''
