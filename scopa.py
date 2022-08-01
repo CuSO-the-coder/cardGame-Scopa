@@ -112,6 +112,9 @@ def checkPickUp(player,carta):
                         tavolo.remove(cartaDaControllare)
                         tavolo.remove(cartaDaControllare2)
                         turnSwap(player,carta)
+#-----------------------    
+    #aggiunig anche la somma a 3 carte
+    
     turnSwap(player,carta)
 
 
@@ -125,10 +128,7 @@ def turnSwap(player, carta):
         player=1
     drop(player)
     
-    
-
-
-    
+     
 def drop(player):
    # tableView()
     inp=0
@@ -162,3 +162,5 @@ drop(player)
 ''''aggiungi il rimescolamento delle carte '''
 
 ''''aggiungi la visualizzazione del tavolo'''
+
+'''aggiungi "asso pigloa tutto" '''
