@@ -39,11 +39,7 @@ carte_valori={
                 "K"     :    10
 }
 
-manoPlayerOne,  manoPlayerTwo   =   []  ,  []
-
-tavolo=[]
-
-mazzettoPlayerOne, mazzettoPlayerTwo=[],[]
+tavolo, manoPlayerOne,  manoPlayerTwo , mazzettoPlayerOne, mazzettoPlayerTwo   = []  ,  []  ,  []  ,  []  ,  []
 
 player=1
 
