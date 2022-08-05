@@ -47,6 +47,8 @@ mazzettoPlayerOne, mazzettoPlayerTwo=[],[]
 
 player=1
 
+scopePlayerOne=0
+scopePlayerTwo=0
 
 def shuffle():
     random.shuffle(mazzo)
@@ -68,60 +70,92 @@ def distro():
 
 
 def checkPickUp(player,carta):
-    for i in range (len(tavolo)):
-        for j in range(len(tavolo)):
-            cartaDaControllare=tavolo[j]
-            val_cartaDaControllare=carte_valori[cartaDaControllare[0]]
-            val_cartaGiocatore=carte_valori[carta[0]]
-            if val_cartaGiocatore==val_cartaDaControllare:
+    for j in range(len(tavolo)):
+        cartaDaControllare=tavolo[j]
+        val_cartaDaControllare=carte_valori[cartaDaControllare[0]]
+        val_cartaGiocatore=carte_valori[carta[0]]
+        if val_cartaGiocatore==val_cartaDaControllare:
+            if player==1:
+                print(f"il giocatore {player} ha preso {cartaDaControllare} con {carta}")
+                mazzettoPlayerOne.append(carta)
+                mazzettoPlayerOne.append(cartaDaControllare)
+                tavolo.remove(cartaDaControllare)
+                turnSwap(player,carta)
+            else:
+                print(f"il giocatore {player} ha preso {cartaDaControllare} con {carta}")
+                mazzettoPlayerTwo.append(carta)
+                mazzettoPlayerTwo.append(cartaDaControllare)
+                tavolo.remove(cartaDaControllare)
+                turnSwap(player,carta)
+#------------------------
+    for j in range(len(tavolo)):
+        cartaDaControllare=tavolo[j]
+        val_cartaDaControllare=carte_valori[cartaDaControllare[0]]
+        val_cartaGiocatore=carte_valori[carta[0]]
+        for t in range(1, len(tavolo)+1):
+            cartaDaControllare2=tavolo[t]
+            val_cartaDaControllare2=carte_valori[cartaDaControllare2[0]]
+        if val_cartaGiocatore==val_cartaDaControllare+val_cartaDaControllare2:
                 if player==1:
-                    print(f"il giocatore {player} ha preso {cartaDaControllare} con {carta}")
+                    print(f"il giocatore {player} ha preso {cartaDaControllare} e {cartaDaControllare2} con {carta}")
                     mazzettoPlayerOne.append(carta)
                     mazzettoPlayerOne.append(cartaDaControllare)
+                    mazzettoPlayerOne.append(cartaDaControllare2)                           
                     tavolo.remove(cartaDaControllare)
+                    tavolo.remove(cartaDaControllare2)
                     turnSwap(player,carta)
                 else:
-                    print(f"il giocatore {player} ha preso {cartaDaControllare} con {carta}")
+                    print(f"il giocatore {player} ha preso {cartaDaControllare} e {cartaDaControllare2} con {carta}")
                     mazzettoPlayerTwo.append(carta)
                     mazzettoPlayerTwo.append(cartaDaControllare)
+                    mazzettoPlayerTwo.append(cartaDaControllare2)                           
                     tavolo.remove(cartaDaControllare)
+                    tavolo.remove(cartaDaControllare2)
                     turnSwap(player,carta)
-#------------------------
-    for i in range (len(tavolo)):
-        for j in range(len(tavolo)):
-            cartaDaControllare=tavolo[j]
-            val_cartaDaControllare=carte_valori[cartaDaControllare[0]]
-            val_cartaGiocatore=carte_valori[carta[0]]
-            for t in range(len(tavolo)):
-                cartaDaControllare2=tavolo[t]
-                val_cartaDaControllare2=carte_valori[cartaDaControllare2[0]]
-            if val_cartaGiocatore==val_cartaDaControllare+val_cartaDaControllare2:
+#-----------------------    
+    for j in range(len(tavolo)):
+        cartaDaControllare=tavolo[j]
+        val_cartaDaControllare=carte_valori[cartaDaControllare[0]]
+        val_cartaGiocatore=carte_valori[carta[0]]
+        for t in range(1, len(tavolo)+1):
+            cartaDaControllare2=tavolo[t]
+            val_cartaDaControllare2=carte_valori[cartaDaControllare2[0]]
+            for i in range (2, len(tavolo)+1):
+                cartaDaControllare3=tavolo[i]
+                val_cartaDaControllare3=carte_valori[cartaDaControllare3[0]]
+            if val_cartaGiocatore==val_cartaDaControllare+val_cartaDaControllare2+val_cartaDaControllare3:
                     if player==1:
-                        print(f"il giocatore {player} ha preso {cartaDaControllare} e {cartaDaControllare2} con {carta}")
+                        print(f"il giocatore {player} ha preso {cartaDaControllare} e {cartaDaControllare2} e {cartaDaControllare3} con {carta}")
                         mazzettoPlayerOne.append(carta)
                         mazzettoPlayerOne.append(cartaDaControllare)
-                        mazzettoPlayerOne.append(cartaDaControllare2)                           
+                        mazzettoPlayerOne.append(cartaDaControllare2)    
+                        mazzettoPlayerOne.append(cartaDaControllare3)                         
                         tavolo.remove(cartaDaControllare)
                         tavolo.remove(cartaDaControllare2)
+                        tavolo.remove(cartaDaControllare3)
                         turnSwap(player,carta)
                     else:
-                        print(f"il giocatore {player} ha preso {cartaDaControllare} e {cartaDaControllare2} con {carta}")
+                        print(f"il giocatore {player} ha preso {cartaDaControllare} e {cartaDaControllare2} e {cartaDaControllare3} con {carta}")
                         mazzettoPlayerTwo.append(carta)
                         mazzettoPlayerTwo.append(cartaDaControllare)
                         mazzettoPlayerTwo.append(cartaDaControllare2)                           
+                        mazzettoPlayerTwo.append(cartaDaControllare3)                           
                         tavolo.remove(cartaDaControllare)
                         tavolo.remove(cartaDaControllare2)
+                        tavolo.remove(cartaDaControllare3)
                         turnSwap(player,carta)
-#-----------------------    
-    #aggiunig anche la somma a 3 carte
-    
+    #aggiunig anche la somma a 4 carte
+
     turnSwap(player,carta)
 
 
 def turnSwap(player, carta):
     if len(tavolo)==0:
         print(f"il giocatore {player} ha fatto scopa con {carta}")
-    #aggiungi un sistema di conteggio delle scope
+        if player==1:
+            scopePlayerOne+=1
+        else:
+            scopePlayerTwo+=1
     if player==1:
         player=2
     else:
@@ -163,4 +197,3 @@ drop(player)
 
 ''''aggiungi la visualizzazione del tavolo'''
 
-'''aggiungi "asso pigloa tutto" '''
