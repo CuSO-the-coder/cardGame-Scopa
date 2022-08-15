@@ -1,4 +1,6 @@
 import random
+import os
+import sys 
 
 mazzo=[
                 "1c", "1q", "1f", "1p",
@@ -49,8 +51,9 @@ lastPickup=0
 
 ultimamano=False
 
-
 def tableView():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(f"carte nel mazzo: {len(mazzo)}")
     print("******"*len(tavolo),end="\n")
     print()
     print(" ---- "*len(tavolo))
@@ -210,7 +213,7 @@ def checkPickUp(player,carta):
     tavolo.append(carta)
     turnSwap(player,carta,ultimamano,scopePlayerOne,scopePlayerTwo)
 
-def lastChance(lastPickup):
+def lastChance(tavolo):
     if lastPickup==1:
         for ele in tavolo:
             mazzettoPlayerOne.append(ele)
@@ -221,6 +224,7 @@ def lastChance(lastPickup):
             mazzettoPlayerTwo.append(ele)
         print(f"essendo l'ultima mano, il giocatore 2 prende {tavolo}")
         tavolo=[]
+    scoreCheck()
     
 def turnSwap(player, carta, ultimamano,scopePlayerOne,scopePlayerTwo):
     if len(mazzo)==0 and len(manoPlayerOne)==0:
@@ -237,8 +241,8 @@ def turnSwap(player, carta, ultimamano,scopePlayerOne,scopePlayerTwo):
         player=1
     if len(manoPlayerTwo)==0 and len(mazzo)>=6:
         distro()
-    if manoPlayerTwo==0 and ultimamano==True:
-        lastChance(lastPickup)
+    if len(manoPlayerTwo)==0 and ultimamano==True:
+        lastChance(tavolo)
     drop(player)
      
 def drop(player):
@@ -259,16 +263,187 @@ def drop(player):
         del manoPlayerTwo[inp-1]
         checkPickUp(player,carta)
 
+def carte():
+    if len(mazzettoPlayerOne) >20:
+        return(1)
+    elif len(mazzettoPlayerOne)==20:
+        return("patta")
+    else:
+        return(2)
+
+def ori():
+    ori=0
+    for ele in mazzettoPlayerOne:
+        if ele[1]=="q":
+            ori+=1
+    if ori>5:
+        return(1)
+    elif ori==5:
+        return("patta")
+    else:
+        return(2)
+
+def settebello():
+    if "7q" in mazzettoPlayerOne:
+        return(1)
+    else:
+        return(2)
+
+def primiera():
+    q, p, c, f=False , False, False, False 
+    puntiPrimiera1=0
+    puntiPrimiera2=0 
+    for ele in mazzettoPlayerOne:
+        if ele[0]=="7":
+            if ele[1]=="q" and q==False:
+                q=True
+                puntiPrimiera1+=21
+            if ele[1]=="p" and p==False:
+                p=True
+                puntiPrimiera1+=21
+            if ele[1]=="c" and c==False:
+                c=True
+                puntiPrimiera1+=21
+            if ele[1]=="f" and f==False:
+                c=True
+                puntiPrimiera1+=21
+    if puntiPrimiera1<70:
+        for ele in mazzettoPlayerOne:
+            if ele[0]=="6":
+                if ele[1]=="q" and q==False:
+                    q=True
+                    puntiPrimiera1+=18
+                if ele[1]=="p" and p==False:
+                    p=True
+                    puntiPrimiera1+=18
+                if ele[1]=="c" and c==False:
+                    c=True
+                    puntiPrimiera1+=18
+                if ele[1]=="f" and f==False:
+                    c=True
+                    puntiPrimiera1+=18
+    if puntiPrimiera1<70:
+        for ele in mazzettoPlayerOne:
+            if ele[0]=="1":
+                if ele[1]=="q" and q==False:
+                    q=True
+                    puntiPrimiera1+=16
+                if ele[1]=="p" and p==False:
+                    p=True
+                    puntiPrimiera1+=16
+                if ele[1]=="c" and c==False:
+                    c=True
+                    puntiPrimiera1+=16
+                if ele[1]=="f" and f==False:
+                    c=True
+                    puntiPrimiera1+=16
+    
+    q, p, c, f=False , False, False, False 
+    for ele in mazzettoPlayerTwo:
+        if ele[0]=="7":
+            if ele[1]=="q" and q==False:
+                q=True
+                puntiPrimiera2+=21
+            if ele[1]=="p" and p==False:
+                p=True
+                puntiPrimiera2+=21
+            if ele[1]=="c" and c==False:
+                c=True
+                puntiPrimiera2+=21
+            if ele[1]=="f" and f==False:
+                c=True
+                puntiPrimiera2+=21
+    if puntiPrimiera2<70:
+        for ele in mazzettoPlayerTwo:
+            if ele[0]=="6":
+                if ele[1]=="q" and q==False:
+                    q=True
+                    puntiPrimiera2+=18
+                if ele[1]=="p" and p==False:
+                    p=True
+                    puntiPrimiera2+=18
+                if ele[1]=="c" and c==False:
+                    c=True
+                    puntiPrimiera2+=18
+                if ele[1]=="f" and f==False:
+                    c=True
+                    puntiPrimiera2+=18
+    if puntiPrimiera2<70:
+        for ele in mazzettoPlayerOne:
+            if ele[0]=="1":
+                if ele[1]=="q" and q==False:
+                    q=True
+                    puntiPrimiera2+=16
+                if ele[1]=="p" and p==False:
+                    p=True
+                    puntiPrimiera2+=16
+                if ele[1]=="c" and c==False:
+                    c=True
+                    puntiPrimiera2+=16
+                if ele[1]=="f" and f==False:
+                    c=True
+                    puntiPrimiera2+=16
+    
+    if puntiPrimiera1>puntiPrimiera2:
+        return(1)
+    elif puntiPrimiera1<puntiPrimiera2:
+        return(2)
+    else:
+        return("patta")            
+
+def scoreCheck():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    f=open("cache.txt", "w")
+    l=f.readlines
+    if len(l)==4:
+        puntiTotPlayerOne=int(l[2])
+        puntiTotPlayerTwo=int(l[4])
+    else:
+        puntiTotPlayerOne=0
+        puntiTotPlayerTwo=0
+    
+    puntoCarte=carte()
+    puntoOri=ori()
+    puntoSettebello=settebello()
+    puntoPrimiera=primiera()
+
+    punteggi=[puntoCarte, puntoOri, puntoSettebello, puntoSettebello]
+    
+    for ele in punteggi:
+        if ele==1:
+            puntiTotPlayerOne+=1
+        elif ele==2:
+            puntiTotPlayerTwo+=1
+
+    puntiTotPlayerOne+=scopePlayerOne
+    puntiTotPlayerTwo+=scopePlayerTwo
+
+
+    print(f"Ecco i risultati della partita:")
+    print(f"Carte\t{puntoCarte}")
+    print(f"Ori\t{puntoOri}")
+    print(f"Settebello\t{puntoSettebello}")
+    print(f"Primiera\t{puntoPrimiera}")
+    print(f"Scope giocatore1\t{scopePlayerOne}")
+    print(f"Scope giocatore2\t{scopePlayerTwo}")
+
+    f.write("Punti giocatore1:\n")
+    f.write(str(puntiTotPlayerOne)+"\n")
+    
+    f.write("Punti giocatore2:\n")
+    f.write(str(puntiTotPlayerTwo)+"\n")
+
+    f.close()
+    sys.exit()
+
 
 start()
 
 drop(player)
 
-
+    
+#aggiungi il "if name == "__main__
 #chiama la funzione "play" che serve per richiamare l'avvio dell partita
-#nome giocatori, partite vinte, punti.... (salvati su un file chiamato "cache")
-#aggiungi il sistema di conteggi punti ed il salvataggio degli stessi in un file 
 #loading()
-#aggiungi l'interfaccia da terminale con i vari clear e l'indentazione da partita
-
+#togli "import sys" appena metti la funzione replay()
 
