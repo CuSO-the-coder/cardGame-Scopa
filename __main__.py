@@ -163,7 +163,7 @@ def checkPickUp(player,carta):
             for t in range(j+1, len(tavolo)):
                 cartaDaControllare2=tavolo[t]
                 val_cartaDaControllare2=carte_valori[cartaDaControllare2[0]]
-            if val_cartaGiocatore==val_cartaDaControllare+val_cartaDaControllare2:
+            if val_cartaGiocatore==(val_cartaDaControllare+val_cartaDaControllare2):
                     if player==1:
                         print(f"il giocatore {player} ha preso {cartaDaControllare} e {cartaDaControllare2} con {carta}")
                         mazzettoPlayerOne.append(carta)
@@ -194,7 +194,7 @@ def checkPickUp(player,carta):
                 for i in range (t+1, len(tavolo)):
                     cartaDaControllare3=tavolo[i]
                     val_cartaDaControllare3=carte_valori[cartaDaControllare3[0]]
-                if val_cartaGiocatore==val_cartaDaControllare+val_cartaDaControllare2+val_cartaDaControllare3:
+                if val_cartaGiocatore==(val_cartaDaControllare+val_cartaDaControllare2+val_cartaDaControllare3):
                         if player==1:
                             print(f"il giocatore {player} ha preso {cartaDaControllare} e {cartaDaControllare2} e {cartaDaControllare3} con {carta}")
                             mazzettoPlayerOne.append(carta)
@@ -232,7 +232,7 @@ def checkPickUp(player,carta):
                     for w in range(i+1, len(tavolo)):
                         cartaDaControllare4=tavolo[w]
                         val_cartaDaControllare4=carte_valori[cartaDaControllare4[0]]
-                        if val_cartaGiocatore==val_cartaDaControllare+val_cartaDaControllare2+val_cartaDaControllare3+val_cartaDaControllare4:
+                        if val_cartaGiocatore==(val_cartaDaControllare+val_cartaDaControllare2+val_cartaDaControllare3+val_cartaDaControllare4):
                                 if player==1:
                                     print(f"il giocatore {player} ha preso {cartaDaControllare} e {cartaDaControllare2} e {cartaDaControllare3} e {cartaDaControllare4} con {carta}")
                                     mazzettoPlayerOne.append(carta)
