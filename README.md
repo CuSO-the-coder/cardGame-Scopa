@@ -1,4 +1,4 @@
-# cardGame-scopa
+# cardGame-Scopa
 Il gioco di carte "scopa" scritto in python
 
 ## Come funziona
