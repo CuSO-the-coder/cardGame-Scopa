@@ -1,10 +1,7 @@
-import random
 import os
-import sys 
+import random
+import sys
 import time
-from unicodedata import name
-from reader import feed
-    
 mazzo=[
                 "1c", "1q", "1f", "1p",
                 "2c", "2q", "2f", "2p",
