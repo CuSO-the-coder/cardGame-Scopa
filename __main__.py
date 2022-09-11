@@ -3,29 +3,29 @@ import random
 import sys
 import time
 mazzo=[
-                "1♥", "1♦ ", "1♣", "1♠",
-                "2♥", "2♦ ", "2♣", "2♠",
-                "3♥", "3♦ ", "3♣", "3♠",
-                "4♥", "4♦ ", "4♣", "4♠",
-                "5♥", "5♦ ", "5♣", "5♠",
-                "6♥", "6♦ ", "6♣", "6♠",
-                "7♥", "7♦ ", "7♣", "7♠",
-                "J♥", "J♦ ", "J♣", "J♠",
-                "Q♥", "Q♦ ", "Q♣", "Q♠",
-                "K♥", "K♦ ", "K♣", "K♠"
+                "1♥", "1♦", "1♣", "1♠",
+                "2♥", "2♦", "2♣", "2♠",
+                "3♥", "3♦", "3♣", "3♠",
+                "4♥", "4♦", "4♣", "4♠",
+                "5♥", "5♦", "5♣", "5♠",
+                "6♥", "6♦", "6♣", "6♠",
+                "7♥", "7♦", "7♣", "7♠",
+                "J♥", "J♦", "J♣", "J♠",
+                "Q♥", "Q♦", "Q♣", "Q♠",
+                "K♥", "K♦", "K♣", "K♠"
             ]
 
 mazzo_reset=[
-                "1♥", "1♦ ", "1♣", "1♠",
-                "2♥", "2♦ ", "2♣", "2♠",
-                "3♥", "3♦ ", "3♣", "3♠",
-                "4♥", "4♦ ", "4♣", "4♠",
-                "5♥", "5♦ ", "5♣", "5♠",
-                "6♥", "6♦ ", "6♣", "6♠",
-                "7♥", "7♦ ", "7♣", "7♠",
-                "J♥", "J♦ ", "J♣", "J♠",
-                "Q♥", "Q♦ ", "Q♣", "Q♠",
-                "K♥", "K♦ ", "K♣", "K♠"
+                "1♥", "1♦", "1♣", "1♠",
+                "2♥", "2♦", "2♣", "2♠",
+                "3♥", "3♦", "3♣", "3♠",
+                "4♥", "4♦", "4♣", "4♠",
+                "5♥", "5♦", "5♣", "5♠",
+                "6♥", "6♦", "6♣", "6♠",
+                "7♥", "7♦", "7♣", "7♠",
+                "J♥", "J♦", "J♣", "J♠",
+                "Q♥", "Q♦", "Q♣", "Q♠",
+                "K♥", "K♦", "K♣", "K♠"
             ]
 
 carte_valori={
@@ -321,7 +321,7 @@ def carte():
 def ori():
     ori=0
     for ele in mazzettoPlayerOne:
-        if ele[1]=="q":
+        if ele[1]=="♦":
             ori+=1
     if ori>5:
         return(1)
@@ -331,7 +331,7 @@ def ori():
         return(2)
 
 def settebello():
-    if "7q" in mazzettoPlayerOne:
+    if "7♦" in mazzettoPlayerOne:
         return(1)
     else:
         return(2)
@@ -342,92 +342,92 @@ def primiera():
     puntiPrimiera2=0 
     for ele in mazzettoPlayerOne:
         if ele[0]=="7":
-            if ele[1]=="q" and q==False:
+            if ele[1]=="♦" and q==False:
                 q=True
                 puntiPrimiera1+=21
-            if ele[1]=="p" and p==False:
+            if ele[1]=="♠" and p==False:
                 p=True
                 puntiPrimiera1+=21
-            if ele[1]=="c" and c==False:
+            if ele[1]=="♥" and c==False:
                 c=True
                 puntiPrimiera1+=21
-            if ele[1]=="f" and f==False:
+            if ele[1]=="♣" and f==False:
                 c=True
                 puntiPrimiera1+=21
     if puntiPrimiera1<70:
         for ele in mazzettoPlayerOne:
             if ele[0]=="6":
-                if ele[1]=="q" and q==False:
+                if ele[1]=="♦" and q==False:
                     q=True
                     puntiPrimiera1+=18
-                if ele[1]=="p" and p==False:
+                if ele[1]=="♠" and p==False:
                     p=True
                     puntiPrimiera1+=18
-                if ele[1]=="c" and c==False:
+                if ele[1]=="♥" and c==False:
                     c=True
                     puntiPrimiera1+=18
-                if ele[1]=="f" and f==False:
+                if ele[1]=="♣" and f==False:
                     c=True
                     puntiPrimiera1+=18
     if puntiPrimiera1<70:
         for ele in mazzettoPlayerOne:
             if ele[0]=="1":
-                if ele[1]=="q" and q==False:
+                if ele[1]=="♦" and q==False:
                     q=True
                     puntiPrimiera1+=16
-                if ele[1]=="p" and p==False:
+                if ele[1]=="♠" and p==False:
                     p=True
                     puntiPrimiera1+=16
-                if ele[1]=="c" and c==False:
+                if ele[1]=="♥" and c==False:
                     c=True
                     puntiPrimiera1+=16
-                if ele[1]=="f" and f==False:
+                if ele[1]=="♣" and f==False:
                     c=True
                     puntiPrimiera1+=16
     
     q, p, c, f=False , False, False, False 
     for ele in mazzettoPlayerTwo:
         if ele[0]=="7":
-            if ele[1]=="q" and q==False:
+            if ele[1]=="♦" and q==False:
                 q=True
                 puntiPrimiera2+=21
-            if ele[1]=="p" and p==False:
+            if ele[1]=="♠" and p==False:
                 p=True
                 puntiPrimiera2+=21
-            if ele[1]=="c" and c==False:
+            if ele[1]=="♥" and c==False:
                 c=True
                 puntiPrimiera2+=21
-            if ele[1]=="f" and f==False:
+            if ele[1]=="♣" and f==False:
                 c=True
                 puntiPrimiera2+=21
     if puntiPrimiera2<70:
         for ele in mazzettoPlayerTwo:
             if ele[0]=="6":
-                if ele[1]=="q" and q==False:
+                if ele[1]=="♦" and q==False:
                     q=True
                     puntiPrimiera2+=18
-                if ele[1]=="p" and p==False:
+                if ele[1]=="♠" and p==False:
                     p=True
                     puntiPrimiera2+=18
-                if ele[1]=="c" and c==False:
+                if ele[1]=="♥" and c==False:
                     c=True
                     puntiPrimiera2+=18
-                if ele[1]=="f" and f==False:
+                if ele[1]=="♣" and f==False:
                     c=True
                     puntiPrimiera2+=18
     if puntiPrimiera2<70:
         for ele in mazzettoPlayerOne:
             if ele[0]=="1":
-                if ele[1]=="q" and q==False:
+                if ele[1]=="♦" and q==False:
                     q=True
                     puntiPrimiera2+=16
-                if ele[1]=="p" and p==False:
+                if ele[1]=="♠" and p==False:
                     p=True
                     puntiPrimiera2+=16
-                if ele[1]=="c" and c==False:
+                if ele[1]=="♥" and c==False:
                     c=True
                     puntiPrimiera2+=16
-                if ele[1]=="f" and f==False:
+                if ele[1]=="♣" and f==False:
                     c=True
                     puntiPrimiera2+=16
     
